@@ -1,0 +1,38 @@
+<h1>Contact us</h1>
+
+<form [formGroup]='messageForm' (ngSubmit)='onSubmit()'>
+	<h5 *ngIf="success">Your form is valid!</h5>
+	<label>
+		Name:
+		<input type="text" formControlName="name">
+		<div class="form-control-feedback error form-text" *ngIf="messageForm.get('name').invalid && messageForm.get('name').dirty">At least 5 character</div>
+	</label>
+	<label>
+		Email:
+		<input type="text" formControlName="email">
+		<div class="form-control-feedback error form-text" *ngIf="messageForm.get('email').invalid && messageForm.get('email').dirty">Please enter valid Email</div>
+	</label>
+	<label>
+		Mobile:
+		<input type="text" formControlName="mobile">
+		<div class="form-control-feedback error form-text" *ngIf="messageForm.get('mobile').invalid && messageForm.get('mobile').dirty">Should be 10 digit</div>
+	</label>
+	 <label>
+      Message:
+      <textarea formControlName="message"></textarea>
+      <div class="form-control-feedback error form-text" *ngIf="messageForm.get('message').invalid && messageForm.get('message').dirty">At least 100 character</div>
+    </label>
+
+    <button [disabled]="!messageForm.valid" type="submit" value="Send message" class="cta"> Submit Form</button>
+</form>
+ <div *ngIf="submitted" class="results">
+    <strong>Name:</strong> 
+    <span>{{ messageForm.controls.name.value }}</span>
+    <strong>Contact:</strong> 
+    <span>{{ messageForm.controls.email.value }}</span>
+    <span>{{ messageForm.controls.mobile.value }}</span>
+
+
+    <strong>Message:</strong> 
+    <span>{{ messageForm.controls.message.value }}</span>
+  </div>
